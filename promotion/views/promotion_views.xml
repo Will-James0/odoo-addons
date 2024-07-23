@@ -1,0 +1,53 @@
+<odoo>
+    <!-- Promotion Form View -->
+    <record id="view_promotion_form" model="ir.ui.view">
+        <field name="name">promotion.form</field>
+        <field name="model">promotion.promotion</field>
+        <field name="arch" type="xml">
+            <form string="Promotion">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="product_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Tiers">
+                            <field name="tier_ids">
+                                <tree editable="bottom">
+                                    <field name="quantity"/>
+                                    <field name="free_units"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Promotion Tree View -->
+    <record id="view_promotion_tree" model="ir.ui.view">
+        <field name="name">promotion.tree</field>
+        <field name="model">promotion.promotion</field>
+        <field name="arch" type="xml">
+            <tree string="Promotions">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Promotion Action -->
+    <record id="action_promotion" model="ir.actions.act_window">
+        <field name="name">Promotions</field>
+        <field name="res_model">promotion.promotion</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Promotion Menu -->
+    <menuitem id="menu_promotion_root" name="Promotions" parent="account.menu_finance" sequence="36" action="action_promotion"/>
+    <menuitem id="menu_promotion" name="Promotions" parent="menu_promotion_root" action="action_promotion"/>
+</odoo>

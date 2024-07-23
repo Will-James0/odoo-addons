@@ -1,0 +1,26 @@
+<odoo>
+    <!-- Inherit Account Move Form View -->
+    <record id="view_invoice_line_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.line.form.inherit.free_units</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="after">
+                <field name="free_units" string="UG"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Account Move Line Tree View -->
+    <!--<record id="view_account_move_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.move.line.tree.inherit.free_units</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_qty']" position="after">
+                <field name="free_units" string="UG"/>
+            </xpath>
+        </field>
+    </record>-->
+
+</odoo>
