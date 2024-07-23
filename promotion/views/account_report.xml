@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <!-- Hériter de la vue existante -->
+        <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//table[@class='table table-sm o_main_table']/thead/tr/th[@name='th_quantity']" position="after">
+                <!-- Ajouter le nouvel élément <th> -->
+                <th name="th_ug" class="text-right"><span>UG</span></th>
+            </xpath>
+            <xpath expr="//table[@class='table table-sm o_main_table']/tbody/t/tr/t/td[2]" position="after">
+                <!-- Ajouter la nouvelle cellule <td> -->
+                <td class="text-right">
+                    <span t-field="line.free_units"/>
+                </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

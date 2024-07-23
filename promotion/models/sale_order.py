@@ -8,17 +8,18 @@ class SaleOrderLine(models.Model):
 
     free_units = fields.Integer(compute='_compute_free_units', store=True)
 
-    @api.depends('product_uom_qty', 'product_id')
+    @api.depends('product_uom_qty', 'product_id', 'order_id.date_order')
     def _compute_free_units(self):
         for line in self:
             free_units = 0
-            if not line.product_id:
+            if not line.product_id or not line.order_id.date_order:
                 line.free_units = free_units
                 continue
 
+            date_order = line.order_id.date_order.date()  # La date du devis
             promotions = self.env['promotion.promotion'].search([
-                ('start_date', '<=', fields.Date.today()),
-                ('end_date', '>=', fields.Date.today()),
+                ('start_date', '<=', date_order),
+                ('end_date', '>=', date_order),
                 ('product_ids', 'in', line.product_id.id)
             ])
             _logger.debug("Found promotions: %s", promotions)

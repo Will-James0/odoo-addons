@@ -5,4 +5,4 @@ from . import promotion_tier
 from . import sale_order
 from . import product_product
 from . import model
-from . import stock_move
+from . import account_move

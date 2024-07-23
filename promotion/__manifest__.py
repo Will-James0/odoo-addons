@@ -29,7 +29,8 @@
         'views/account_move_views.xml',
         'views/product_views.xml',
         'views/promo_stock_move.xml',
-        'views/sale_order.xml'
+        'views/sale_order.xml',
+        'views/account_report.xml',
     ],
 
     'installable': True,
