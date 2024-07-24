@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <template id="order_line_portal_inherit" inherit_id="sale.sale_order_portal_content">
+            <!-- Ajouter l'en-tête UG -->
+            <xpath expr="//table[@id='sales_order_table']/thead/tr/th[2]" position="after">
+                <th class="text-left">UG</th>
+            </xpath>
+
+            <!-- Ajouter les données UG pour chaque ligne de commande -->
+            <xpath expr="//table[@id='sales_order_table']/tbody/t/tr/t/td[2]" position="after">
+                <td class="text-right">
+                    <span t-field="line.free_units"/>
+                </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>
